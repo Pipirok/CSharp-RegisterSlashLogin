@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32901.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegisterLogin", "BMI\RegisterLogin.csproj", "{3D376A2F-5D7F-498F-8815-C19F6CC1885A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3D376A2F-5D7F-498F-8815-C19F6CC1885A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D376A2F-5D7F-498F-8815-C19F6CC1885A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D376A2F-5D7F-498F-8815-C19F6CC1885A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D376A2F-5D7F-498F-8815-C19F6CC1885A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5BE9A1B4-49DE-42D3-BCE4-439C1D0E45D1}
+	EndGlobalSection
+EndGlobal
