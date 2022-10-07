@@ -34,7 +34,7 @@ namespace BMI
             labelHeight.Text = $"{height.ToString()} cm";
             labelLogin.Text = $"Welcome, {login}!";
 
-            BMI = weight / Math.Pow(height, 2);
+            BMI = (double)((int)((weight / Math.Pow((double)height/100, 2))*100))/100;
             labelBMI.Text += BMI.ToString();
 
             int roughBMI = (int)BMI;

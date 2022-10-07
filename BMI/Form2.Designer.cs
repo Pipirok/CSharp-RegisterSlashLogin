@@ -54,6 +54,7 @@
             // 
             // buttonRegister
             // 
+            this.buttonRegister.Enabled = false;
             this.buttonRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonRegister.Location = new System.Drawing.Point(163, 408);
             this.buttonRegister.Name = "buttonRegister";
@@ -90,7 +91,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(184, 29);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(144, 39);
+            this.label1.Size = new System.Drawing.Size(139, 38);
             this.label1.TabIndex = 11;
             this.label1.Text = "Register";
             // 

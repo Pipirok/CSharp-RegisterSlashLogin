@@ -89,7 +89,7 @@ namespace BMI
         {
             bool hasPasswordUppercase = Regex.IsMatch(textBoxPassword.Text, @"[A-Z]");
             bool hasPasswordNumber = Regex.IsMatch(textBoxPassword.Text, @"[0-9]");
-            bool hasSpecialCharacter = Regex.IsMatch(textBoxPassword.Text, @"^[\\s\\dA-Za-z]");
+            bool hasSpecialCharacter = Regex.IsMatch(textBoxPassword.Text, @"^[0-9A-Za-z]");
             bool isPasswordLegalLength = textBoxPassword.TextLength > 6 && textBoxPassword.TextLength < 64;
 
             if(!hasPasswordNumber || !hasSpecialCharacter || !isPasswordLegalLength || !hasPasswordUppercase)
