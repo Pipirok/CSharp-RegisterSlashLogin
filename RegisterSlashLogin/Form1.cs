@@ -42,12 +42,9 @@ namespace BMI
                 return;
             }
 
-            MessageBox.Show("You've successfully logged in! Close the window to proceed to the BMI calculator",
+            MessageBox.Show("You've successfully logged in!",
                 "Login Success", 
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-            FormBMI fb = new FormBMI(signedInAcc.login, signedInAcc.age, signedInAcc.weight, signedInAcc.height);
-            fb.Show();
-            this.Hide();
         }
 
         private void textBoxLogin_TextChanged(object sender, EventArgs e)

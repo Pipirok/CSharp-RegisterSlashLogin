@@ -16,9 +16,25 @@ namespace BMI
         private bool isLoginLegal = false;
         private bool isPasswordLegal = false;
         private bool doPasswordsMatch = false;
-        private bool isAgeLegal = false;
-        private bool isWeightLegal = false;
-        private bool isHeightLegal = false;
+
+        private Random random = new Random();
+        private string captcha = "";
+
+        internal void UpdateCaptcha()
+        {
+            string captcha = "";
+            for (int i = 0; i < random.Next(6, 10); i++)
+            {
+                if (random.Next(2) % 2 == 0)
+                {
+                    captcha += char.ConvertFromUtf32(random.Next(65, 91));
+                    continue;
+                }
+                captcha += random.Next(0, 10).ToString();
+            }
+            this.captcha = captcha;
+            labelCaptcha.Text = captcha;
+        }
 
         public FormRegister()
         {
@@ -27,33 +43,16 @@ namespace BMI
 
         private void FormRegister_Load(object sender, EventArgs e)
         {
-
+            UpdateCaptcha();
         }
 
         private void evaluateButtonEnable()
         {
-            buttonRegister.Enabled = isLoginLegal && 
-                isPasswordLegal && 
-                doPasswordsMatch && 
-                isAgeLegal && 
-                isHeightLegal &&
-                isWeightLegal;
+            buttonRegister.Enabled = isLoginLegal &&
+                isPasswordLegal &&
+                doPasswordsMatch;
         }
 
-        private void computeRegisterFlavourText()
-        {
-            if(isAgeLegal && isWeightLegal && isHeightLegal)
-            {
-                labelRegisterFlavourText.Text = "";
-                return;
-            }
-            string flavourText = "Check ";
-            if (!isAgeLegal) flavourText += " age";
-            if (!isWeightLegal) flavourText += " weight";
-            if (!isHeightLegal) flavourText += " height";
-            flavourText += "!";
-            labelRegisterFlavourText.Text = flavourText;
-        }
 
         private void textBoxLogin_TextChanged(object sender, EventArgs e)
         {
@@ -80,16 +79,12 @@ namespace BMI
             evaluateButtonEnable();
         }
 
-        private void maskedTextBoxPhoneNumber_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void textBoxPassword_TextChanged(object sender, EventArgs e)
         {
             bool hasPasswordUppercase = Regex.IsMatch(textBoxPassword.Text, @"[A-Z]");
             bool hasPasswordNumber = Regex.IsMatch(textBoxPassword.Text, @"[0-9]");
-            bool hasSpecialCharacter = Regex.IsMatch(textBoxPassword.Text, @"^[0-9A-Za-z]");
+            bool hasSpecialCharacter = Regex.IsMatch(textBoxPassword.Text, @"[^0-9A-Za-z]");
             bool isPasswordLegalLength = textBoxPassword.TextLength > 6 && textBoxPassword.TextLength < 64;
 
             if(!hasPasswordNumber || !hasSpecialCharacter || !isPasswordLegalLength || !hasPasswordUppercase)
@@ -134,15 +129,18 @@ namespace BMI
 
         private void buttonRegister_Click(object sender, EventArgs e)
         {
-            Account registeredAcc = AccountManager.Register(textBoxLogin.Text, textBoxPassword.Text,
-                int.Parse(textBoxAge.Text), double.Parse(textBoxWeight.Text),
-                int.Parse(textBoxHeight.Text));
-            MessageBox.Show("Account created successfully! Close this window to proceed to the BMI calculator.",
+            if (textBoxCaptcha.Text == captcha)
+            {
+                AccountManager.Register(textBoxLogin.Text, textBoxPassword.Text);
+                MessageBox.Show("Account created successfully!",
                 "Register success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            FormBMI fb = new FormBMI(registeredAcc.login, registeredAcc.age, registeredAcc.weight, registeredAcc.height);
-            fb.Show();
-            this.Hide();
+                return;
+            }
+            MessageBox.Show("Captcha is incorrect! Try again", "Captcha failure!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            UpdateCaptcha();
+            textBoxCaptcha.Text = "";
+            textBoxCaptcha.Focus();
+            
         }
 
         private void labelSignInPrompt_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -152,57 +150,11 @@ namespace BMI
             fsi.Show();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void buttonRefresh_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(textBoxAge.Text, out int parsedAge))
-            {
-                isAgeLegal = true;
-                return;
-            }
-            else
-            {
-                isAgeLegal = false;
-            }
-
-            evaluateButtonEnable();
-            computeRegisterFlavourText();
-        }
-
-        private void textBoxWeight_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-            double.Parse(textBoxWeight.Text);
-                isWeightLegal = true;
-                return;
-            }
-            catch
-            {
-                isWeightLegal = false;
-            }
-            finally
-            {
-            evaluateButtonEnable();
-            computeRegisterFlavourText();
-            }
-        }
-
-        private void textBoxHeight_TextChanged(object sender, EventArgs e)
-        {
-            try 
-            {
-                int.Parse(textBoxHeight.Text);
-                isHeightLegal = true;
-            }
-            catch
-            {
-                isHeightLegal = false;
-            }
-            finally
-            {
-            evaluateButtonEnable();
-            computeRegisterFlavourText();
-            }
+            UpdateCaptcha();
+            textBoxCaptcha.Text = "";
+            textBoxCaptcha.Focus();
         }
     }
 }

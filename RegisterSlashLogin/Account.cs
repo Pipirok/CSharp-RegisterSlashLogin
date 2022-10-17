@@ -10,17 +10,11 @@ namespace BMI
     {
         public string login;
         public string password;
-        public int age;
-        public double weight;
-        public int height;
 
-        public Account(string _login, string _password, int _age, double _weight, int _height)
+        public Account(string _login, string _password)
         {
             login = _login;
             password = _password;   
-            age = _age; 
-            weight = _weight;
-            height = _height;
         }
     }
 }

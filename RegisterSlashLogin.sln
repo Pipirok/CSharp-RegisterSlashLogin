@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegisterLogin", "BMI\RegisterLogin.csproj", "{3D376A2F-5D7F-498F-8815-C19F6CC1885A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegisterLogin", "RegisterSlashLogin\RegisterLogin.csproj", "{3D376A2F-5D7F-498F-8815-C19F6CC1885A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

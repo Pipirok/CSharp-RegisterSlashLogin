@@ -8,7 +8,7 @@ namespace BMI
 {
     internal class AccountManager
     {
-        private static Account[] registeredAccounts = {new Account("johnDoe", "APass33$", 20, 72, 175)};
+        private static Account[] registeredAccounts = {new Account("johnDoe", "APass33$")};
 
 
         private static Account FindAccountByLogin(string login)
@@ -46,14 +46,14 @@ namespace BMI
             return null;
         }
 
-        public static Account Register(string login, string password, int age, double weight, int height)
+        public static Account Register(string login, string password)
         {
             if (DoesAccountExist(login))
             {
                 return null;
             }
 
-            Account newAcc = new Account(login, password, age, weight, height);
+            Account newAcc = new Account(login, password);
             registeredAccounts = registeredAccounts.Append(newAcc).ToArray();
             return newAcc;
         }
